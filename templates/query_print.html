@@ -1,0 +1,15 @@
+<html>
+<body>
+UCW Class list printing. <p/>
+
+Select classes to print, then click Go. You can then print the subsequent pages.<p/>
+
+<form action="print" method="post">
+{% for name, contents in classes %}
+<input type="checkbox" name="grades" value="{{name}}" />{{name}}<br />
+{% end %}
+Minimum # of empty labels for new people per class: <input type=text name="min_empty" value="4"/><br/>
+<input type="submit" name="mysubmit" value="Go" />
+</form>
+
+</body>

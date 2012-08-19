@@ -1,0 +1,55 @@
+<html>
+<head>
+<style>
+
+table {
+    page-break-after: true;
+}
+table {
+}
+td.barcode {
+    height: 1in;
+    width: 1in;
+}
+img {
+    vertical-align: middle;
+}
+span.name {
+    display: block;
+    font-size: 16pt;
+    margin-bottom: .1in;
+}
+td.name {
+    height: 1in;
+    width: 3in;
+}
+td.title {
+    font-size: 20pt;
+}
+
+</style>
+</head>
+<body>
+{% for title, pages in groups %}
+{% for pgno in range(0, len(pages)) %}
+{% set page = pages[pgno] %}
+<table>
+<tr><td colspan="2" class=title>{{ title }}</td><td colspan="2" class="title">{{ "Page %d" % (pgno + 1) }}</td></tr>
+{% for i in range(0, len(page), 2) %}
+<tr>
+{% for j in range(0,2) %}
+{% if page[i + j] is None %}
+{% set name, id, img_file = '____________________', None, None %}
+{% else %}
+{% set name, id, img_file = page[i + j] %}
+{% end %}
+<td class="barcode">{% if img_file %}<img src="{{ img_file }}"/>{% else %}Child:{% end %}</td>
+<td class="name"><span class="name">{{ name }}</span><span class="sign">Sign In _____ Sign Out _____</span></td>
+{% end %}
+</tr>
+{% end %}
+</table>
+{% end %}
+{% end %}
+
+</body>

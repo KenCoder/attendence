@@ -1,0 +1,10 @@
+<html>
+<body>
+Select classes to print
+<form action="do_print">
+{% for name, contents in classes %}
+<input type="checkbox" name="{{name}}" value="Y" />{{name}}<br />
+{% end %}
+</form>
+
+</body>
